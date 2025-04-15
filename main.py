@@ -10,13 +10,14 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+
 # Dependency to get the database session
 def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+ db = SessionLocal()
+ try:
+    yield db
+ finally:
+    db.close()
 
 # Pydantic model to use in FastAPI request and response
 class BookCreate(BaseModel):
